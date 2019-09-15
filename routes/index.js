@@ -7,10 +7,10 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 router.get('/caller', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/Caller/index.html'))
+  res.sendFile(path.join(__dirname, '../public/Caller/index.html'))
 });
 router.get('/callee', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/Callee/index.html'))
+  res.sendFile(path.join(__dirname, '../public/Callee/index.html'))
 });
 
 module.exports = router;
