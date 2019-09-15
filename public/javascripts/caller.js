@@ -9,6 +9,7 @@ var socket = io.connect('https://sunrintv.kro.kr');
 var caller;
 
 socket.on('answer', (answer) => {
+  console.log(answer);
   caller.setRemoteDescription(answer);
 });
 
