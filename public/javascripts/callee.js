@@ -9,10 +9,12 @@ var socket = io.connect('https://sunrintv.kro.kr');
 var callee;
 
 socket.on('offer', (offer) => {
+  console.log(offer);
   callee.setRemoteDescription(offer);
   makeAnswer()
 });
 socket.on('candidate', (candidate) => {
+  console.log(candidate);
   callee.addIceCandidate(candidate);
 });
 
