@@ -5,7 +5,7 @@ const RTC_CONFIGURATION = {
     username: 'webrtc@live.com' }]
 };
 
-var socket = io.connect('http://54.180.57.73:3000');
+var socket = io.connect('https://sunrintv.kro.kr');
 var callee;
 
 socket.on('offer', (offer) => {
