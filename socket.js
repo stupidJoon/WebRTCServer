@@ -9,7 +9,7 @@ function webRTC(io) {
         socket.join('caller');
       }
       else if (room == "callee") {
-        socket.join('callee');
+        socket.join(socket.rooms);
       }
       else {
         throw new Error('Neither Caller and Callee');
@@ -33,7 +33,7 @@ function webRTC(io) {
     });
 
     socket.on('disconnect', () => {
-      console.log(socket.rooms, 'Socket Disconnected', socket.id);
+      console.log('Socket Disconnected', socket.id);
     });
   });
 }
