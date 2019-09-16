@@ -7,6 +7,7 @@ function webRTC(io) {
     socket.on('join', (room) => {
       if (room == 'caller' || room == 'callee') {
         socket.join(socket.rooms);
+        console.log(Object.keys(socket.rooms));
       }
       else {
         throw new Error('Neither Caller and Callee');
@@ -25,7 +26,7 @@ function webRTC(io) {
     });
 
     socket.on('candidate', (candidate) => {
-      console.log(JSON.stringify(Object.keys(io.sockets.adapter.sids[socket.id])), 'Candidate', candidate != null);
+      console.log('Candidate', candidate != null);
       if (socket.rooms == 'caller') {
         io.to('callee').emit('candidate', candidate);
       }
