@@ -7,7 +7,7 @@ function webRTC(io) {
     socket.on('join', (room) => {
       if (room == 'caller' || room == 'callee') {
         socket.join(room);
-        console.log(Object.keys(socket.rooms));
+        console.log(room);
       }
       else {
         throw new Error('Neither Caller and Callee');
