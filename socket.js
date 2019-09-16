@@ -1,13 +1,20 @@
 var exports = module.exports = {};
 
+let caller = [];
+let callee = [];
+
 function webRTC(io) {
   io.on('connection', (socket) => {
     console.log('Socket Connected', socket.id);
 
     socket.on('join', (room) => {
-      if (room == 'caller' || room == 'callee') {
+      if (room == 'caller') {
         socket.join(room);
-        console.log(room);
+        caller.push(socket.id);
+      }
+      else if (room == 'callee') {
+        socket.join(room);
+        callee.push(socket.id);
       }
       else {
         throw new Error('Neither Caller and Callee');
@@ -27,10 +34,10 @@ function webRTC(io) {
 
     socket.on('candidate', (candidate) => {
       console.log('Candidate', candidate != null);
-      if (socket.rooms == 'caller') {
+      if (caller.includes(socket.id) == true) {
         io.to('callee').emit('candidate', candidate);
       }
-      else if (socket.rooms == 'callee') {
+      else if (callee.includes(socket.id) == true) {
         io.to('caller').emit('candidate', candidate);
       }
     });
