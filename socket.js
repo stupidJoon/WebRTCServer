@@ -25,7 +25,7 @@ function webRTC(io) {
     });
 
     socket.on('candidate', (candidate) => {
-      console.log(socket.rooms, 'Candidate', candidate != null);
+      console.log(JSON.stringify(socket.rooms), 'Candidate', candidate != null);
       if (socket.rooms == 'caller') {
         io.to('callee').emit('candidate', candidate);
       }
