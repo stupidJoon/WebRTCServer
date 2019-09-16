@@ -25,7 +25,7 @@ function webRTC(io) {
     });
 
     socket.on('candidate', (candidate) => {
-      console.log(Object.keys(io.sockets.adapter.sids[socket.id]), 'Candidate', candidate != null);
+      console.log(Object.keys(io.sockets.adapter.sids[socket.id])[1], 'Candidate', candidate != null);
       if (socket.rooms == 'caller') {
         io.to('callee').emit('candidate', candidate);
       }
