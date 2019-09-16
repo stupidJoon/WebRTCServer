@@ -6,7 +6,7 @@ function webRTC(io) {
 
     socket.on('join', (room) => {
       if (room == 'caller' || room == 'callee') {
-        socket.join(socket.rooms);
+        socket.join(room);
         console.log(Object.keys(socket.rooms));
       }
       else {
