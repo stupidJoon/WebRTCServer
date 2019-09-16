@@ -14,7 +14,7 @@ socket.on('answer', (answer) => {
 });
 socket.on('candidate', (candidate) => {
   console.log(candidate);
-  callee.addIceCandidate(candidate);
+  caller.addIceCandidate(candidate);
 });
 
 function sendOffer(offer) {
