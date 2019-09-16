@@ -2,6 +2,18 @@ var exports = module.exports = {};
 
 function webRTC(io) {
   io.on('connection', (socket) => {
+    socket.on('join', (room) => {
+      if (room == "caller") {
+        socket.join('caller');
+      }
+      else if (room == "callee") {
+        socket.join('callee');
+      }
+      else {
+        throw new Error('Neither Caller and Callee');
+      }
+      console.log(socket.id, 'is', room);
+    });
     console.log('Socket Connected', socket.id);
     socket.on('offer', (offer) => {
       console.log('Offer', offer != null);

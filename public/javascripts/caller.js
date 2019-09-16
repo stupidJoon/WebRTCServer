@@ -45,6 +45,7 @@ function makeOffer() {
 }
 
 $(document).ready(() => {
+  socket.emit('join', 'caller');
   $("#share").click(() => {
     getStream().then((stream) => {
       $("#screen")[0].srcObject = stream;

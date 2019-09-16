@@ -36,5 +36,6 @@ function makeAnswer() {
 }
 
 $(document).ready(() => {
+  socket.emit('join', 'callee');
   makePeerConnection();
 });
