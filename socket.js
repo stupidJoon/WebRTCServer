@@ -33,7 +33,7 @@ function webRTC(io) {
     });
 
     socket.on('disconnect', () => {
-      console.log(socket.room, 'Socket Disconnected', socket.id);
+      console.log(io.sockets.manager.roomClients[socket.id], 'Socket Disconnected', socket.id);
     });
   });
 }
