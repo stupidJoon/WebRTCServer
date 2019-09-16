@@ -5,10 +5,7 @@ function webRTC(io) {
     console.log('Socket Connected', socket.id);
 
     socket.on('join', (room) => {
-      if (room == "caller") {
-        socket.join('caller');
-      }
-      else if (room == "callee") {
+      if (room == 'caller' || room == 'callee') {
         socket.join(socket.rooms);
       }
       else {
@@ -28,8 +25,13 @@ function webRTC(io) {
     });
 
     socket.on('candidate', (candidate) => {
-      console.log('Candidate', candidate != null);
-      io.sockets.emit('candidate', candidate);
+      console.log(socket.rooms, 'Candidate', candidate != null);
+      if (socket.rooms == 'caller') {
+        io.to('callee').emit('candidate', candidate);
+      }
+      else if (socket.rooms == 'callee') {
+        io.to('caller').emit('candidate', candidate);
+      }
     });
 
     socket.on('disconnect', () => {

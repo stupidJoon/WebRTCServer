@@ -18,14 +18,22 @@ socket.on('candidate', (candidate) => {
   callee.addIceCandidate(candidate);
 });
 
+function sendAnswer(answer) {
+  socket.emit('answer', answer);
+}
+function sendCandidate(candidate) {
+  socket.emit('candidate', candidate);
+}
 function makePeerConnection() {
   callee = new RTCPeerConnection(RTC_CONFIGURATION);
   callee.onaddstream = (event) => {
     $("#screen")[0].srcObject = event.stream;
   };
-}
-function sendAnswer(answer) {
-  socket.emit('answer', answer);
+  callee.onicecandidate = (event) => {
+    if (event.candidate != null) {
+      sendCandidate(event.candidate);
+    }
+  }
 }
 function makeAnswer() {
   callee.createAnswer().then((answer) => {

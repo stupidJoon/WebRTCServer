@@ -12,6 +12,10 @@ socket.on('answer', (answer) => {
   console.log(answer);
   caller.setRemoteDescription(answer);
 });
+socket.on('candidate', (candidate) => {
+  console.log(candidate);
+  callee.addIceCandidate(candidate);
+});
 
 function sendOffer(offer) {
   socket.emit('offer', offer);
