@@ -14,6 +14,7 @@ var callee;
 
 socket.on('offer', (offer) => {
   console.log(offer);
+  if (callee) { callee.close(); }
   callee.setRemoteDescription(offer);
   makeAnswer()
 });

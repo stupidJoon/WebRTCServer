@@ -35,6 +35,7 @@ function getStream() {
   });
 }
 function makePeerConnection(stream) {
+  if (caller) { caller.close(); }
   caller = new RTCPeerConnection(RTC_CONFIGURATION);
   caller.addStream(stream);
   caller.onicecandidate = (event) => {
