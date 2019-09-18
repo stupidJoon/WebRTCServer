@@ -1,10 +1,10 @@
 const RTC_CONFIGURATION = {
-  iceServer: [
-    { urls: 'stun:numb.viagenie.ca:3478' },
+  iceServers: [
+    { urls: 'stun:stun.l.google.com:19302' },
     {
-      urls: 'turn:numb.viagenie.ca',
-      credential: 'Qwerpoiuwnstkd1!',
-      username: 'jungsangu'
+      url: 'turn:numb.viagenie.ca',
+      credential: 'muazkh',
+      username: 'webrtc@live.com'
     }
   ]
 };
